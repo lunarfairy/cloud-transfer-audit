@@ -1,0 +1,109 @@
+provider,slot,kind,basis
+aws,fw.action,default,security-group rules are allow-only; every rule is an allow
+aws,fw.source_ports,default,source ports are unrestricted unless specified
+aws,fw.ethertype,composition,IP version implied by cidr_ipv4 argument
+aws,sub.default_outbound,default,a subnet has no internet egress unless a route is added
+aws,sub.ip_version,default,IPv4 is the default address family
+aws,obj.redundancy,default,S3 Standard stores objects across multiple AZs by default
+aws,obj.tier,default,S3 Standard is the default storage class
+aws,obj.location,composition,bucket region is the provider region
+aws,obj.uniform_access,default,Object Ownership BucketOwnerEnforced (ACLs disabled) is the default for new buckets
+aws,lb.algorithm,default,round robin is the default routing algorithm
+aws,lb.health_timing,default,health-check interval/threshold defaults apply
+aws,lb.timeout,default,idle timeout default applies
+aws,lb.zones,composition,ALB zones follow the subnets list
+aws,lb.capacity,default,ALB capacity scales automatically
+aws,lb.frontend_ip,default,ALB front-end addresses are allocated automatically
+aws,lb.affinity,default,stickiness disabled by default
+aws,nat.enable,composition,creating the NAT gateway enables NAT
+aws,nat.ip_ranges,default,NAT translates all traffic routed to it
+aws,net.admin_state,default,VPC has no administrative state; always enabled
+aws,net.route_scope,default,VPC routing is regional by construction
+aws,net.subnet_mode,default,VPC subnets are always explicitly created (custom mode)
+aws,pool.cooldown,default,default cooldown/warm-up applies
+aws,tmpl.disk,default,root volume taken from the AMI block-device mapping
+aws,tmpl.nic_config,default,launch template creates a primary interface implicitly
+aws,db.private_dns,default,RDS endpoint DNS name is created automatically
+aws,cdn.sku,default,default price class (all edge locations)
+aws,cdn.paths,default,default cache behaviour matches all paths
+aws,mon.combiner,default,single-metric alarm needs no combiner
+azure,cdn.geo,default,no geo restriction unless configured
+azure,cdn.methods,default,route caches GET/HEAD by default
+azure,db.public_access,composition,VNet-integrated (delegated subnet) flexible server has no public endpoint
+azure,fw.ethertype,default,NSG rules apply to IPv4 prefixes given
+azure,id.trust,composition,user-assigned identity is attached directly to the scale set
+azure,id.instance_profile,composition,identity block on the scale set replaces an instance profile
+azure,inet.default_route,default,Azure system routes include 0.0.0.0/0 to Internet
+azure,inet.gateway,default,no internet gateway resource; system routes provide internet routing
+azure,inet.route_table,default,system route table applies to every subnet
+azure,inet.route_target,default,system route next hop Internet
+azure,inet.subnet_assoc,default,system routes apply to all subnets
+azure,lb.algorithm,default,Application Gateway uses round robin by default
+azure,mon.combiner,default,single-criterion alert needs no combiner
+azure,nat.default_route,composition,subnet-NAT association overrides the default outbound route
+azure,nat.enable,composition,creating the NAT gateway enables NAT
+azure,nat.ip_ranges,default,NAT applies to all ranges of associated subnets
+azure,nat.route_table,composition,no route table; association replaces routing
+azure,nat.route_target,composition,no route target; association replaces routing
+azure,net.admin_state,default,virtual network has no administrative state
+azure,net.internal_dns,default,Azure-provided DNS is on by default
+azure,net.route_scope,default,virtual network routing is regional
+azure,net.subnet_mode,default,subnets are always explicitly created
+azure,obj.location,composition,storage account location set at account level
+azure,pool.template_ref,composition,template is embedded in the scale-set resource
+azure,sub.ip_version,default,IPv4 default
+azure,sub.public_ip_on_launch,default,scale-set instances get no public IP unless configured
+gcp,cdn.geo,default,no geo restriction unless configured
+gcp,cdn.methods,default,Cloud CDN caches GET/HEAD responses by default
+gcp,cdn.origin,composition,the backend service is the CDN origin
+gcp,cdn.origin_protocol,composition,origin protocol is the backend-service protocol
+gcp,cdn.paths,default,URL map default service matches all paths
+gcp,db.storage,default,default disk size with automatic storage increase
+gcp,fw.dest,composition,destination selected by target tags
+gcp,fw.ethertype,default,IPv4 source ranges imply IPv4
+gcp,fw.source_ports,default,source ports unrestricted
+gcp,id.trust,composition,service account attached to the template
+gcp,id.instance_profile,composition,service_account block replaces an instance profile
+gcp,inet.default_route,default,default 0.0.0.0/0 route to the internet gateway is created with the network
+gcp,inet.gateway,default,default internet gateway is implicit
+gcp,inet.route_table,default,network-wide routing table is implicit
+gcp,inet.route_target,default,default-internet-gateway next hop
+gcp,inet.subnet_assoc,default,routes apply network-wide
+gcp,lb.affinity,default,session affinity NONE by default
+gcp,lb.capacity,default,global ALB scales automatically
+gcp,lb.health_match,default,HTTP health check expects 200 by default
+gcp,lb.host_header,default,host header passed through by default
+gcp,lb.timeout,default,backend timeout default 30 s
+gcp,nat.default_route,default,NAT uses the default internet route
+gcp,nat.enable,composition,creating the Cloud NAT gateway enables NAT
+gcp,nat.placement,default,Cloud NAT is regional
+gcp,nat.route_table,default,no NAT-specific route table
+gcp,nat.route_target,default,no NAT-specific route target
+gcp,net.address_space,composition,address space defined on subnets
+gcp,net.admin_state,default,network has no administrative state
+gcp,net.internal_dns,default,internal DNS on by default
+gcp,obj.redundancy,composition,redundancy follows the bucket location type
+gcp,obj.tier,default,STANDARD storage class by default
+gcp,pool.desired,composition,autoscaler sets the instance count
+gcp,pool.scale_mechanics,default,target-tracking autoscaling is the only mechanism
+gcp,sub.default_outbound,default,instances without external IP have no internet egress unless NAT is configured
+gcp,sub.ip_version,default,IPv4 default
+gcp,sub.public_ip_on_launch,default,no external IP without an access_config block
+gcp,tmpl.nic_config,composition,network_interface block inside the template
+openstack,inet.default_route,composition,router external gateway provides the default route
+openstack,inet.route_table,composition,router holds routing
+openstack,inet.route_target,composition,router external gateway is the next hop
+openstack,nat.default_route,composition,router SNAT uses its external gateway
+openstack,nat.placement,composition,SNAT happens on the router
+openstack,nat.route_table,composition,router holds routing
+openstack,nat.route_target,composition,router external gateway
+openstack,nat.egress_ip,default,router external gateway address used for SNAT
+openstack,nat.ip_ranges,default,SNAT applies to all attached subnets
+openstack,net.address_space,composition,address space defined on subnets
+openstack,net.internal_dns,default,Neutron internal DNS (where enabled) is default
+openstack,sub.public_ip_on_launch,default,instances get no floating IP unless associated
+openstack,obj.block_public,default,Swift containers are private unless ACLs are set
+openstack,fw.action,default,security-group rules are allow-only
+openstack,fw.source_ports,default,source ports unrestricted
+openstack,lb.type,composition,L7 behaviour from HTTP listener protocol
+openstack,db.public_access,composition,Trove instance on a private tenant network has no public address

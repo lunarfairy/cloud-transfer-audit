@@ -1,0 +1,299 @@
+{
+ "conformance": {
+  "aws": [
+   {
+    "target": "R05",
+    "before": "referenced_security_group_id = aws_security_group.lb.id\n  ip_protocol                  = \"tcp\"\n  from_port                    = 80\n  to_port                      = 80\n}\nresource \"aws_vpc_security_group_egress_rule\" \"app_out\"",
+    "after": "referenced_security_group_id = aws_security_group.db.id\n  ip_protocol                  = \"tcp\"\n  from_port                    = 80\n  to_port                      = 80\n}\nresource \"aws_vpc_security_group_egress_rule\" \"app_out\""
+   },
+   {
+    "target": "R10",
+    "before": "path    = \"/health\"",
+    "after": "path    = \"/\""
+   },
+   {
+    "target": "R04",
+    "before": "subnet_id      = aws_subnet.app[count.index].id\n  route_table_id = aws_route_table.private.id",
+    "after": "subnet_id      = aws_subnet.app[count.index].id\n  route_table_id = aws_route_table.public.id"
+   },
+   {
+    "target": "R08",
+    "before": "echo ok > /var/www/html/health\\n",
+    "after": "\\n"
+   },
+   {
+    "target": "R11",
+    "before": "multi_az                = true",
+    "after": "multi_az                = false"
+   },
+   {
+    "target": "R09",
+    "before": "vpc_zone_identifier       = aws_subnet.app[*].id",
+    "after": "vpc_zone_identifier       = aws_subnet.public[*].id"
+   },
+   {
+    "target": "R13",
+    "before": "AutoScalingGroupName = aws_autoscaling_group.app.name",
+    "after": "AutoScalingGroupName = \"other\""
+   },
+   {
+    "target": "R06",
+    "before": "resources = [\"${aws_s3_bucket.media.arn}/*\"]\n  }",
+    "after": "resources = [\"${aws_s3_bucket.media.arn}/*\"]\n  }\n  statement {\n    actions   = [\"s3:*\"]\n    resources = [\"*\"]\n  }"
+   },
+   {
+    "target": "R02",
+    "before": "availability_zone = data.aws_availability_zones.az.names[count.index]\n}\nresource \"aws_subnet\" \"db\"",
+    "after": "availability_zone = data.aws_availability_zones.az.names[0]\n}\nresource \"aws_subnet\" \"db\""
+   }
+  ],
+  "azure": [
+   {
+    "target": "R05",
+    "before": "subnet_id                 = azurerm_subnet.db.id\n  network_security_group_id = azurerm_network_security_group.db.id",
+    "after": "subnet_id                 = azurerm_subnet.app.id\n  network_security_group_id = azurerm_network_security_group.db.id"
+   },
+   {
+    "target": "R10",
+    "before": "path                                      = \"/health\"",
+    "after": "path                                      = \"/\""
+   },
+   {
+    "target": "R04",
+    "before": "default_outbound_access_enabled = false",
+    "after": "default_outbound_access_enabled = true"
+   },
+   {
+    "target": "R06",
+    "before": "scope                = azurerm_storage_container.media.id",
+    "after": "scope                = azurerm_storage_account.media.id"
+   },
+   {
+    "target": "R12",
+    "before": "host_name                      = azurerm_public_ip.appgw.ip_address",
+    "after": "host_name                      = azurerm_public_ip.nat.ip_address"
+   },
+   {
+    "target": "R09",
+    "before": "minimum = 2",
+    "after": "minimum = 1"
+   },
+   {
+    "target": "R11",
+    "before": "delegated_subnet_id    = azurerm_subnet.db.id",
+    "after": "delegated_subnet_id    = azurerm_subnet.app.id"
+   },
+   {
+    "target": "R13",
+    "before": "scopes              = [azurerm_linux_virtual_machine_scale_set.app.id]",
+    "after": "scopes              = [azurerm_application_gateway.web.id]"
+   }
+  ],
+  "gcp": [
+   {
+    "target": "R10",
+    "before": "request_path = \"/health\"",
+    "after": "request_path = \"/\""
+   },
+   {
+    "target": "R07",
+    "before": "public_access_prevention    = \"enforced\"",
+    "after": "public_access_prevention    = \"inherited\""
+   },
+   {
+    "target": "R05",
+    "before": "tags                    = [\"app\"]",
+    "after": "tags                    = [\"web\"]"
+   },
+   {
+    "target": "R11",
+    "before": "ipv4_enabled    = false",
+    "after": "ipv4_enabled    = true"
+   },
+   {
+    "target": "R09",
+    "before": "min_replicas    = 2",
+    "after": "min_replicas    = 1"
+   },
+   {
+    "target": "R04",
+    "before": "name                    = google_compute_subnetwork.app.id",
+    "after": "name                    = \"other-subnet\""
+   },
+   {
+    "target": "R06",
+    "before": "member = \"serviceAccount:${google_service_account.app.email}\"",
+    "after": "member = \"allUsers\""
+   },
+   {
+    "target": "R12",
+    "before": "enable_cdn            = true",
+    "after": "enable_cdn            = false"
+   },
+   {
+    "target": "R13",
+    "before": "\"resource.type = \\\"gce_instance\\\" AND metric.type = \\\"compute.googleapis.com/instance/cpu/utilization\\\" AND metadata.system_labels.\\\"instance_group\\\" = \\\"ra-app-mig\\\"\"",
+    "after": "\"resource.type = \\\"gce_instance\\\" AND metric.type = \\\"compute.googleapis.com/instance/cpu/utilization\\\"\""
+   }
+  ],
+  "openstack": [
+   {
+    "target": "R10",
+    "before": "url_path       = \"/health\"",
+    "after": "url_path       = \"/\""
+   },
+   {
+    "target": "R02",
+    "before": "availability_zone = var.availability_zones[count.index % length(var.availability_zones)]",
+    "after": "availability_zone = \"nova\""
+   },
+   {
+    "target": "R05",
+    "before": "remote_group_id   = openstack_networking_secgroup_v2.app.id",
+    "after": "remote_group_id   = openstack_networking_secgroup_v2.db.id"
+   },
+   {
+    "target": "R04",
+    "before": "enable_snat         = true",
+    "after": "enable_snat         = false"
+   },
+   {
+    "target": "R08",
+    "before": "echo ok > /var/www/html/health\\n",
+    "after": "\\n"
+   },
+   {
+    "target": "R03",
+    "before": "port_id     = openstack_lb_loadbalancer_v2.web.vip_port_id",
+    "after": "port_id     = openstack_networking_port_v2.app[0].id"
+   },
+   {
+    "target": "R05",
+    "before": "remote_ip_prefix  = \"10.0.0.0/24\"",
+    "after": "remote_ip_prefix  = \"0.0.0.0/0\""
+   },
+   {
+    "target": "R05",
+    "before": "security_group_ids = [openstack_networking_secgroup_v2.db.id]",
+    "after": "security_group_ids = [openstack_networking_secgroup_v2.app.id]"
+   },
+   {
+    "target": "R11",
+    "before": "port = openstack_networking_port_v2.db.id",
+    "after": "uuid = openstack_networking_network_v2.main.id"
+   }
+  ]
+ },
+ "false_friend": {
+  "gcp": [
+   {
+    "target": "R09",
+    "before": "target = 0.6",
+    "after": "target = 60"
+   },
+   {
+    "target": "R13",
+    "before": "threshold_value = 0.8",
+    "after": "threshold_value = 80"
+   },
+   {
+    "target": "R05",
+    "before": "source_ranges = [\"35.191.0.0/16\", \"130.211.0.0/22\"]",
+    "after": "source_ranges = [\"0.0.0.0/0\"]"
+   }
+  ],
+  "azure": [
+   {
+    "target": "R05",
+    "before": "resource \"azurerm_network_security_rule\" \"app_deny_vnet\" {",
+    "after": "resource \"azurerm_network_security_rule\" \"app_deny_vnet_disabled\" {\n  count = 0"
+   },
+   {
+    "target": "R09",
+    "before": "threshold          = 60",
+    "after": "threshold          = 0.6"
+   },
+   {
+    "target": "R13",
+    "before": "threshold        = 80",
+    "after": "threshold        = 0.8"
+   }
+  ]
+ },
+ "holdout": {
+  "gcp": [
+   {
+    "target": "R11",
+    "before": "enabled            = true",
+    "after": "enabled            = false"
+   },
+   {
+    "target": "R09",
+    "before": "max_replicas    = 6",
+    "after": "max_replicas    = 1"
+   },
+   {
+    "target": "R03",
+    "before": "port_range            = \"80\"",
+    "after": "port_range            = \"8080\""
+   },
+   {
+    "target": "R06",
+    "before": "role   = \"roles/storage.objectUser\"",
+    "after": "role   = \"roles/storage.admin\""
+   },
+   {
+    "target": "R02",
+    "before": "distribution_policy_zones = [\"australia-southeast1-a\", \"australia-southeast1-b\"]",
+    "after": "distribution_policy_zones = [\"australia-southeast1-a\"]"
+   },
+   {
+    "target": "R01",
+    "before": "auto_create_subnetworks = false",
+    "after": "auto_create_subnetworks = true"
+   },
+   {
+    "target": "R12",
+    "before": "enable_cdn            = true",
+    "after": "enable_cdn            = false\n  # cdn disabled"
+   }
+  ],
+  "azure": [
+   {
+    "target": "R07",
+    "before": "container_access_type = \"private\"",
+    "after": "container_access_type = \"blob\""
+   },
+   {
+    "target": "R02",
+    "before": "instances           = 2\n  zones               = [\"1\", \"2\"]",
+    "after": "instances           = 2\n  zones               = [\"1\"]"
+   },
+   {
+    "target": "R11",
+    "before": "mode                      = \"ZoneRedundant\"",
+    "after": "mode                      = \"SameZone\""
+   },
+   {
+    "target": "R13",
+    "before": "    operator         = \"GreaterThan\"\n    threshold        = 80",
+    "after": "    operator         = \"LessThan\"\n    threshold        = 80"
+   },
+   {
+    "target": "R10",
+    "before": "probe_name                          = \"health\"",
+    "after": "probe_name                          = \"other\""
+   },
+   {
+    "target": "R04",
+    "before": "subnet_id      = azurerm_subnet.app.id\n  nat_gateway_id = azurerm_nat_gateway.nat.id",
+    "after": "subnet_id      = azurerm_subnet.db.id\n  nat_gateway_id = azurerm_nat_gateway.nat.id"
+   },
+   {
+    "target": "R03",
+    "before": "public_ip_address_id = azurerm_public_ip.appgw.id\n  }",
+    "after": "public_ip_address_id = azurerm_public_ip.nat.id\n  }"
+   }
+  ]
+ }
+}

@@ -1,0 +1,50 @@
+slot,provider,semantics
+net.instantiate,aws,regional network
+net.instantiate,azure,regional network
+net.instantiate,gcp,global network
+net.instantiate,openstack,project network
+sub.zone_placement,aws,zonal subnet
+sub.zone_placement,gcp,regional subnet
+fw.attach,aws,per-interface group
+fw.attach,azure,per-subnet NSG
+fw.attach,gcp,network rule selecting tagged instances
+fw.attach,openstack,per-interface group
+tmpl.startup,aws,base64-encoded
+tmpl.startup,azure,base64-encoded
+tmpl.startup,gcp,plain text
+tmpl.startup,openstack,plain text
+pool.scale_target,aws,"target tracking, percent"
+pool.scale_target,azure,"threshold rules, percent"
+pool.scale_target,gcp,"target tracking, fraction in (0,1]"
+pool.zones,aws,zones implied by subnet list
+pool.zones,azure,explicit zone list
+pool.zones,gcp,explicit zone list
+pool.zones,openstack,explicit zone per instance
+mon.threshold,aws,percent
+mon.threshold,azure,percent
+mon.threshold,gcp,fraction
+id.permission_actions,aws,action list in principal-attached policy
+id.permission_actions,azure,named role bound at resource scope
+id.permission_actions,gcp,named role bound at resource scope
+id.grant,aws,policy attached to principal
+id.grant,azure,role assignment on resource scope
+id.grant,gcp,IAM binding on resource
+db.network_placement,aws,customer subnets
+db.network_placement,azure,customer delegated subnet
+db.network_placement,gcp,producer network via private services peering
+db.network_placement,openstack,customer subnet via pre-created port
+lb.subnets,aws,shared public subnets
+lb.subnets,azure,dedicated gateway subnet
+lb.subnets,openstack,VIP in customer subnet
+cdn.instantiate,aws,separate edge distribution
+cdn.instantiate,azure,separate edge profile
+cdn.instantiate,gcp,property of load-balancer backend
+cdn.enable,aws,separate edge distribution
+cdn.enable,azure,separate edge profile
+cdn.enable,gcp,property of load-balancer backend
+inet.gateway,aws,dedicated internet gateway
+inet.gateway,openstack,router external gateway combined with SNAT
+nat.subnet_assoc,aws,route-table association
+nat.subnet_assoc,azure,subnet attachment
+nat.subnet_assoc,gcp,subnet list on NAT
+nat.subnet_assoc,openstack,router interface

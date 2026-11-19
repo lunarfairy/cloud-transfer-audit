@@ -1,0 +1,11 @@
+quantity,value,definition
+decision rows,760,configured argument paths plus one type choice per resource/data block
+configured arguments,638,"argument paths of resource, data and provider blocks (meta-arguments excluded)"
+type choices,122,one per resource or data block (provider blocks have none)
+coding units,748,"unique (provider, type, block name, path); 12 repeated paths in Azure autoscale rule blocks are coded once"
+configuration blocks,122,resource and data blocks
+coder requests,125,blocks plus provider blocks with at least one configured argument
+distinct types aws,30,resource+data types; 29 of them coded to a slot
+distinct types azure,26,resource+data types; 24 of them coded to a slot
+distinct types gcp,21,resource+data types; 21 of them coded to a slot
+distinct types openstack,18,resource+data types; 17 of them coded to a slot

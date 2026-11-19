@@ -1,0 +1,140 @@
+slot,concept,concept_name,definition
+net.instantiate,K01,Virtual network,Create an isolated virtual network
+net.address_space,K01,Virtual network,Address range declared on the network itself
+net.internal_dns,K01,Virtual network,Toggle provider DNS hostnames inside the network
+net.subnet_mode,K01,Virtual network,Choose automatic versus custom subnet creation
+net.route_scope,K01,Virtual network,Scope of dynamic route propagation
+net.admin_state,K01,Virtual network,Administrative up/down state of the network
+sub.instantiate,K02,Subnets and zones,Create a subnet
+sub.network_ref,K02,Subnets and zones,State which network the subnet belongs to
+sub.cidr,K02,Subnets and zones,Address range of the subnet
+sub.zone_placement,K02,Subnets and zones,Failure-domain (zone or region) placement of the subnet
+sub.zone_discovery,K02,Subnets and zones,Look up the available zones
+sub.public_ip_on_launch,K02,Subnets and zones,Automatically give instances in the subnet a public address
+sub.default_outbound,K02,Subnets and zones,Toggle implicit default outbound internet access
+sub.private_service_access,K02,Subnets and zones,Private access from the subnet to provider APIs
+sub.ip_version,K02,Subnets and zones,IP version of the subnet
+sub.service_delegation,K02,Subnets and zones,Dedicate the subnet to a managed service
+inet.gateway,K03,Internet routing,Create or attach an internet (external) gateway
+inet.route_table,K03,Internet routing,Create a route table for the public tier
+inet.default_route,K03,Internet routing,Declare the 0.0.0.0/0 destination
+inet.route_target,K03,Internet routing,Make the internet gateway the next hop
+inet.subnet_assoc,K03,Internet routing,Designate which subnets are routed to the internet gateway
+nat.gateway,K04,Private egress (NAT),Create a NAT service
+nat.egress_ip,K04,Private egress (NAT),Static public address used by NAT
+nat.placement,K04,Private egress (NAT),Subnet in which the NAT service lives
+nat.route_table,K04,Private egress (NAT),Create a route table for the private tier
+nat.default_route,K04,Private egress (NAT),Declare the 0.0.0.0/0 destination for private egress
+nat.route_target,K04,Private egress (NAT),Make the NAT the next hop
+nat.subnet_assoc,K04,Private egress (NAT),Designate which subnets egress through NAT
+nat.control_router,K04,Private egress (NAT),Create the control-plane router that hosts NAT
+nat.ip_ranges,K04,Private egress (NAT),Which address ranges of a subnet are translated
+nat.sku,K04,Private egress (NAT),Tier of the NAT service
+nat.enable,K04,Private egress (NAT),Enable source NAT on a router
+fw.group,K05,Traffic filtering,Create a filter group (security group / NSG)
+fw.network_ref,K05,Traffic filtering,Network to which a filter group or rule belongs
+fw.rule,K05,Traffic filtering,Create a filter rule
+fw.direction,K05,Traffic filtering,Ingress or egress direction of a rule
+fw.protocol,K05,Traffic filtering,Protocol matched by a rule
+fw.ports,K05,Traffic filtering,Destination ports matched by a rule
+fw.source_ports,K05,Traffic filtering,Source ports matched by a rule
+fw.source_cidr,K05,Traffic filtering,Source address range of a rule
+fw.source_peer,K05,Traffic filtering,Source expressed as another filter group
+fw.dest,K05,Traffic filtering,Destination address selector of a rule
+fw.action,K05,Traffic filtering,Allow or deny action
+fw.priority,K05,Traffic filtering,Evaluation priority of a rule
+fw.ethertype,K05,Traffic filtering,Ethernet type (IPv4/IPv6) of a rule
+fw.attach,K05,Traffic filtering,"Bind filtering to workloads (instance, NIC, port, subnet, or target tag)"
+fw.override_default,K05,Traffic filtering,Extra rule needed to override a permissive platform default
+id.principal,K06,Workload identity,"Create the workload principal (role, managed identity, service account)"
+id.trust,K06,Workload identity,Who may assume or use the principal
+id.permission_actions,K06,Workload identity,Actions or role granted
+id.permission_scope,K06,Workload identity,Resource scope of the grant
+id.grant,K06,Workload identity,Bind the permission to the principal
+id.instance_binding,K06,Workload identity,Attach the principal to compute
+id.instance_profile,K06,Workload identity,Wrapper object that carries a role to an instance
+id.access_scopes,K06,Workload identity,OAuth access scopes on the instance
+obj.bucket,K07,Object storage,Create a bucket or container
+obj.account,K07,Object storage,Create the parent storage account
+obj.block_public,K07,Object storage,Prevent public access
+obj.uniform_access,K07,Object storage,Enforce uniform bucket-level access control
+obj.redundancy,K07,Object storage,Replication or redundancy level
+obj.tier,K07,Object storage,Performance tier of storage
+obj.location,K07,Object storage,Geographic location of the bucket
+tmpl.instantiate,K08,Compute template,Create a compute template
+tmpl.image,K08,Compute template,Select the machine image
+tmpl.size,K08,Compute template,Select the instance size
+tmpl.startup,K08,Compute template,Startup script / user data
+tmpl.network,K08,Compute template,Subnet or network placement of the instance NIC
+tmpl.admin_access,K08,Compute template,Administrator user and SSH key
+tmpl.disk,K08,Compute template,Boot disk settings
+tmpl.nic_config,K08,Compute template,"NIC structural settings (primary flags, IP configuration)"
+tmpl.update_policy,K08,Compute template,How instances pick up template changes
+pool.instantiate,K09,Elastic pool,Create an elastic instance pool
+pool.template_ref,K09,Elastic pool,Template and version used by the pool
+pool.min,K09,Elastic pool,Minimum size
+pool.max,K09,Elastic pool,Maximum size
+pool.desired,K09,Elastic pool,Desired or fixed instance count
+pool.zones,K09,Elastic pool,Spread instances across failure domains
+pool.lb_registration,K09,Elastic pool,Register pool instances with the load balancer
+pool.health_replace,K09,Elastic pool,Replace instances that fail health checks
+pool.scale_policy,K09,Elastic pool,Create a scaling policy
+pool.scale_metric,K09,Elastic pool,Metric that drives scaling
+pool.scale_target,K09,Elastic pool,Target or threshold value of the scaling metric
+pool.scale_mechanics,K09,Elastic pool,"Rule mechanics (direction, step size, aggregation windows)"
+pool.cooldown,K09,Elastic pool,Cooldown between scaling actions
+lb.instantiate,K10,L7 load balancer,Create the load balancer
+lb.type,K10,L7 load balancer,Load balancer product or tier
+lb.exposure,K10,L7 load balancer,Internet-facing versus internal
+lb.subnets,K10,L7 load balancer,Subnets in which the load balancer is placed
+lb.frontend_ip,K10,L7 load balancer,Public frontend address
+lb.listener,K10,L7 load balancer,Create a listener
+lb.listener_port,K10,L7 load balancer,Listener port
+lb.listener_protocol,K10,L7 load balancer,Listener protocol
+lb.routing,K10,L7 load balancer,Route listener traffic to a backend
+lb.backend_pool,K10,L7 load balancer,Create a backend pool
+lb.backend_port,K10,L7 load balancer,Backend port
+lb.backend_protocol,K10,L7 load balancer,Backend protocol
+lb.health_check,K10,L7 load balancer,Create a health check
+lb.health_path,K10,L7 load balancer,Health-check path
+lb.health_match,K10,L7 load balancer,Expected health-check response
+lb.health_timing,K10,L7 load balancer,"Health-check interval, timeout and thresholds"
+lb.algorithm,K10,L7 load balancer,Balancing algorithm or mode
+lb.affinity,K10,L7 load balancer,Session affinity
+lb.capacity,K10,L7 load balancer,Load-balancer capacity units
+lb.zones,K10,L7 load balancer,Zones of the load balancer
+lb.timeout,K10,L7 load balancer,Backend request timeout
+lb.host_header,K10,L7 load balancer,Host-header handling
+db.instantiate,K11,Managed database,Create the managed database
+db.engine,K11,Managed database,Database engine
+db.engine_version,K11,Managed database,Engine version
+db.size_class,K11,Managed database,Instance class or tier
+db.storage,K11,Managed database,Storage size or type
+db.admin_credentials,K11,Managed database,Administrator user and password
+db.network_placement,K11,Managed database,Network placement of the database
+db.private_dns,K11,Managed database,Private DNS for the database endpoint
+db.public_access,K11,Managed database,Disable public endpoint
+db.backup,K11,Managed database,Backup enablement and retention
+db.ha,K11,Managed database,High-availability standby
+db.deletion,K11,Managed database,Deletion protection or final snapshot
+db.initial_database,K11,Managed database,Initial schema or database
+cdn.instantiate,K12,CDN,Create the CDN
+cdn.enable,K12,CDN,Enable the CDN
+cdn.origin,K12,CDN,Origin of cached content
+cdn.origin_protocol,K12,CDN,Protocol and ports towards the origin
+cdn.viewer_protocol,K12,CDN,Protocol policy towards viewers
+cdn.cache_policy,K12,CDN,Cache policy and cache key
+cdn.methods,K12,CDN,Allowed and cached HTTP methods
+cdn.paths,K12,CDN,Path patterns served
+cdn.certificate,K12,CDN,Viewer certificate or default domain
+cdn.geo,K12,CDN,Geographic restriction
+cdn.sku,K12,CDN,CDN tier
+cdn.origin_group,K12,CDN,Group of origins
+mon.alarm,K13,Metric alarm,Create a metric alarm
+mon.metric,K13,Metric alarm,Metric namespace and name
+mon.scope,K13,Metric alarm,Resources the alarm watches
+mon.statistic,K13,Metric alarm,Aggregation statistic
+mon.threshold,K13,Metric alarm,Threshold value
+mon.comparison,K13,Metric alarm,Comparison operator
+mon.window,K13,Metric alarm,Evaluation period and window
+mon.combiner,K13,Metric alarm,Combination of conditions

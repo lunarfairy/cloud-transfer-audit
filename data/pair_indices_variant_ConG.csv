@@ -1,0 +1,13 @@
+home,target,n_target_slots,I,R,F,Rd,N,D,surface,abstraction,divergent,novel,variant
+aws,azure,12,7,5,0,0,0,1,0.5833333333333334,1.0,0.0,0.0,concept granularity
+aws,gcp,12,3,9,0,0,0,1,0.25,1.0,0.0,0.0,concept granularity
+aws,openstack,10,5,5,0,0,0,3,0.5,1.0,0.0,0.0,concept granularity
+azure,aws,13,7,5,0,0,1,0,0.5384615384615384,0.9230769230769231,0.0,0.07692307692307693,concept granularity
+azure,gcp,12,3,9,0,0,0,0,0.25,1.0,0.0,0.0,concept granularity
+azure,openstack,10,5,4,0,0,1,3,0.5,0.9,0.0,0.1,concept granularity
+gcp,aws,13,3,9,0,0,1,0,0.23076923076923078,0.9230769230769231,0.0,0.07692307692307693,concept granularity
+gcp,azure,12,3,9,0,0,0,0,0.25,1.0,0.0,0.0,concept granularity
+gcp,openstack,10,3,6,0,0,1,3,0.3,0.8999999999999999,0.0,0.1,concept granularity
+openstack,aws,13,5,5,0,0,3,0,0.38461538461538464,0.7692307692307693,0.0,0.23076923076923078,concept granularity
+openstack,azure,12,5,4,0,0,3,1,0.4166666666666667,0.75,0.0,0.25,concept granularity
+openstack,gcp,12,3,6,0,0,3,1,0.25,0.75,0.0,0.25,concept granularity

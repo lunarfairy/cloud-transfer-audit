@@ -1,0 +1,15 @@
+{
+ "n_mutants": 23,
+ "detected": 23,
+ "same_as_tofu": 20,
+ "syntax_n": 56,
+ "syntax_mean": 0.9217032967032968,
+ "syntax_min": 0.5384615384615384,
+ "syntax_full": 18,
+ "renamed_score": 1.0,
+ "cross_max": 0.0,
+ "holdout_n": 14,
+ "holdout_grader_detected": 12,
+ "holdout_suite_detected": 11,
+ "note": "Grader rules were tightened on the 23 development mutants (in-sample). The 14 hold-out mutants were written after that and scored before any further change; two grader defects and two suite gaps they revealed were fixed afterwards."
+}

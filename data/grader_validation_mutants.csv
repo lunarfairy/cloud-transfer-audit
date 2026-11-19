@@ -1,0 +1,24 @@
+set,provider,target,mutation,grader_fails,score,detected,tofu_fails,same_as_tofu
+mutant,gcp,R10,"request_path = ""/health"" -> request_path = ""/""",R10,0.923,True,R10,True
+mutant,gcp,R07,"public_access_prevention = ""enforced"" -> public_access_prevention = ""inherited""",R07,0.923,True,R07,True
+mutant,gcp,R05,"tags = [""app""] -> tags = [""web""]",R05,0.923,True,R05,True
+mutant,gcp,R11,ipv4_enabled = false -> ipv4_enabled = true,R11,0.923,True,R11,True
+mutant,gcp,R09,min_replicas = 2 -> min_replicas = 1,R09,0.923,True,R09,True
+mutant,gcp,R04,"name = google_compute_subnetwork.app.id -> name = ""other-subnet""",R04,0.923,True,R04,True
+mutant,gcp,R06,"member = ""serviceAccount:${google_service_account. -> member = ""allUsers""",R06|R07,0.846,True,R06,False
+mutant,gcp,R12,enable_cdn = true -> enable_cdn = false,R12,0.923,True,R12,True
+mutant,gcp,R13,"""resource.type = \""gce_instance\"" AND metric.type  -> ""resource.type = \""gce_instance\"" AND metric.type ",R13,0.923,True,R13,True
+false_friend,gcp,R09,target = 0.6 -> target = 60,R09,0.923,True,R09,True
+false_friend,gcp,R13,threshold_value = 0.8 -> threshold_value = 80,R13,0.923,True,R13,True
+false_friend,gcp,R05,"source_ranges = [""35.191.0.0/16"", ""130.211.0.0/22"" -> source_ranges = [""0.0.0.0/0""]",R05,0.923,True,R05,True
+mutant,azure,R05,subnet_id = azurerm_subnet.db.id network_security_ -> subnet_id = azurerm_subnet.app.id network_security,R05,0.923,True,R05,True
+mutant,azure,R10,"path = ""/health"" -> path = ""/""",R10,0.923,True,R10,True
+mutant,azure,R04,default_outbound_access_enabled = false -> default_outbound_access_enabled = true,R04,0.923,True,R04,True
+mutant,azure,R06,scope = azurerm_storage_container.media.id -> scope = azurerm_storage_account.media.id,R06,0.923,True,R06,True
+mutant,azure,R12,host_name = azurerm_public_ip.appgw.ip_address -> host_name = azurerm_public_ip.nat.ip_address,R12,0.923,True,R12,True
+mutant,azure,R09,minimum = 2 -> minimum = 1,R09,0.923,True,R09,True
+mutant,azure,R11,delegated_subnet_id = azurerm_subnet.db.id -> delegated_subnet_id = azurerm_subnet.app.id,R05|R11,0.846,True,R11,False
+mutant,azure,R13,scopes = [azurerm_linux_virtual_machine_scale_set. -> scopes = [azurerm_application_gateway.web.id],R13,0.923,True,R13,True
+false_friend,azure,R05,"resource ""azurerm_network_security_rule"" ""app_deny -> resource ""azurerm_network_security_rule"" ""app_deny",R05,0.923,True,suite error (exit 1: assertion references removed resource),False
+false_friend,azure,R09,threshold = 60 -> threshold = 0.6,R09,0.923,True,R09,True
+false_friend,azure,R13,threshold = 80 -> threshold = 0.8,R13,0.923,True,R13,True

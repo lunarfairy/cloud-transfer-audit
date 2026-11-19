@@ -1,0 +1,15 @@
+provider,target,mutation,grader_fails,tofu_fails,tofu_exit,grader_detected,tofu_detected,grader_fails_after_fix,tofu_fails_after_fix
+gcp,R11,enabled = true -> enabled = false,R11,,0,True,False,R11,R11
+gcp,R09,max_replicas = 6 -> max_replicas = 1,R09,R09,1,True,True,R09,R09
+gcp,R03,"port_range = ""80"" -> port_range = ""8080""",,R10,1,False,False,R03,R10
+gcp,R06,"role = ""roles/storage.objectUser"" -> role = ""roles/storage.admin""",R06,R06,1,True,True,R06,R06
+gcp,R02,"distribution_policy_zones = [""australia-southeast1-a"", ""aust -> distribution_policy_zones = [""australia-southeast1-a""]",R02,R02,1,True,True,R02,R02
+gcp,R01,auto_create_subnetworks = false -> auto_create_subnetworks = true,R01,R01,1,True,True,R01,R01
+gcp,R12,enable_cdn = true -> enable_cdn = false # cdn disabled,R12,R12,1,True,True,R12,R12
+azure,R07,"container_access_type = ""private"" -> container_access_type = ""blob""",R07,R07,1,True,True,R07,R07
+azure,R02,"instances = 2 zones = [""1"", ""2""] -> instances = 2 zones = [""1""]",R02,R02,1,True,True,R02,R02
+azure,R11,"mode = ""ZoneRedundant"" -> mode = ""SameZone""",R02|R11,R11,1,True,True,R02|R11,R11
+azure,R13,"operator = ""GreaterThan"" threshold = 80 -> operator = ""LessThan"" threshold = 80",R13,,0,True,False,R13,R13
+azure,R10,"probe_name = ""health"" -> probe_name = ""other""",R10,R10,1,True,True,R10,R10
+azure,R04,subnet_id = azurerm_subnet.app.id nat_gateway_id = azurerm_n -> subnet_id = azurerm_subnet.db.id nat_gateway_id = azurerm_na,R04,R04,1,True,True,R04,R04
+azure,R03,public_ip_address_id = azurerm_public_ip.appgw.id } -> public_ip_address_id = azurerm_public_ip.nat.id },R12,R03,1,False,True,R03|R12,R03
